@@ -14,13 +14,15 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Organize Your
-            <span className="text-transparent bg-gradient-to-r from-accent to-primary bg-clip-text"> Projects </span>
+            <span className="text-transparent bg-gradient-to-r from-accent to-primary bg-clip-text"> Projects and Tasks </span>
             Like Never Before
           </h1>
           
           <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-            ITopIA Boards transforms the way you manage tasks with intuitive boards, lists, and cards. 
-            Experience project management that adapts to your workflow.
+            ITopIA Boards transforms the way you manage ideas and tasks into intuitive boards, lists, and cards. 
+            Experience project management that adapts to your daily tasks and workflow.
+            <br />
+            <br />Suitable for every business and team. 
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">

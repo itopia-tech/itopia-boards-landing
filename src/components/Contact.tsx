@@ -87,7 +87,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-card-foreground">Email Support</h4>
-                    <p className="text-muted-foreground">support@itopiaboards.com</p>
+                    <p className="text-muted-foreground">contacto.itopia@gmail.com</p>
                   </div>
                 </div>
               </Card>
@@ -99,7 +99,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-card-foreground">Phone Support</h4>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">+5989912345600000</p>
                   </div>
                 </div>
               </Card>
@@ -111,13 +111,13 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-card-foreground">Office Location</h4>
-                    <p className="text-muted-foreground">123 Innovation Drive<br />Tech City, TC 12345</p>
+                    <p className="text-muted-foreground">Montevideo City<br />Mvdeo City, TC 12345</p>
                   </div>
                 </div>
               </Card>
             </div>
 
-            <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10 text-white">
+            {/* <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10 text-white">
               <h4 className="font-semibold mb-2">Need Immediate Help?</h4>
               <p className="text-white/80 text-sm mb-4">
                 Check out our comprehensive documentation or join our community forum for instant answers.
@@ -126,7 +126,7 @@ const Contact = () => {
                 <Button variant="glass" size="sm">Documentation</Button>
                 <Button variant="glass" size="sm">Community</Button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
