@@ -16,12 +16,12 @@ const Features = () => {
     {
       icon: Zap,
       title: "Automation & Templates",
-      description: "Automate repetitive tasks with custom rules and start projects faster with pre-built templates for common workflows."
+      description: "Automate repetitive tasks and start projects faster with pre-built templates for common workflows."
     },
     {
       icon: Shield,
       title: "Enterprise Security",
-      description: "Bank-level security with encryption, SSO integration, and granular permission controls to keep your data safe."
+      description: "High security level with encryption, and granular permission controls to keep your data safe."
     },
     {
       icon: Calendar,

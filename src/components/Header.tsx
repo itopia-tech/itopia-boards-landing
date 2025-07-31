@@ -15,7 +15,7 @@ const Header = () => {
             Features
           </a>
           <a href="#testimonials" className="text-white/80 hover:text-white transition-colors">
-            Testimonials
+            Pricing
           </a>
           <a href="#contact" className="text-white/80 hover:text-white transition-colors">
             Contact

@@ -39,8 +39,7 @@ const Footer = () => {
               <li><a href="#" className="text-white/80 hover:text-white transition-colors">Features</a></li>
               <li><a href="#" className="text-white/80 hover:text-white transition-colors">Pricing</a></li>
               <li><a href="#" className="text-white/80 hover:text-white transition-colors">Templates</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Integrations</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">API</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">API (Coming Soon)</a></li>
             </ul>
           </div>
 
@@ -48,9 +47,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Support</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Help Center</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Community</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">24x7 Help</a></li>
               <li><a href="#" className="text-white/80 hover:text-white transition-colors">Status</a></li>
               <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">Contact Us</a></li>
             </ul>
@@ -61,7 +58,7 @@ const Footer = () => {
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-white/80 text-sm mb-4 md:mb-0">
-              © 2024 ITopIA Boards. All rights reserved.
+              © 2025 ITopIA Boards. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-white/80 hover:text-white transition-colors">Privacy Policy</a>

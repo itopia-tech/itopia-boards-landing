@@ -2,6 +2,16 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 const CallToAction = () => {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <section className="py-20 bg-gradient-hero text-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -24,28 +34,33 @@ const CallToAction = () => {
           </h2>
           
           <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join thousands of teams who have revolutionized their project management. 
-            Start your free trial today and experience the difference.
+            Join the teams who have revolutionized their project management. 
+            Log on with a Demo Access today and experience the difference.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button variant="hero" size="lg" className="group text-lg px-8 py-4">
-              Start Free Trial
+              Try Demo Now
               <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="glass" size="lg" className="text-lg px-8 py-4">
-              Schedule Demo
+            <Button 
+              variant="glass" 
+              size="lg" 
+              className="text-lg px-8 py-4"
+              onClick={scrollToContact}
+            >
+              Schedule Demo with Support
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
             <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10">
-              <div className="text-3xl font-bold mb-2">14 Days</div>
-              <div className="text-white/70">Free Trial</div>
+              <div className="text-3xl font-bold mb-2">Full Features Access</div>
+              <div className="text-white/70">Demo Access</div>
             </div>
             <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10">
               <div className="text-3xl font-bold mb-2">No Setup</div>
-              <div className="text-white/70">Ready in Minutes</div>
+              <div className="text-white/70">Immediate Web Access</div>
             </div>
             <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10">
               <div className="text-3xl font-bold mb-2">24/7</div>
