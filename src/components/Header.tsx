@@ -23,11 +23,13 @@ const Header = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <Button variant="glass" size="sm" className="hidden md:inline-flex">
+          {/* <Button variant="glass" size="sm" className="hidden md:inline-flex">
             Sign In
-          </Button>
-          <Button variant="hero" size="sm">
-            Try Demo
+          </Button> */}
+          <Button variant="hero" size="sm" asChild>
+            <a href="https://tasks.itopia.tech/" target="_blank" rel="noopener noreferrer">
+              Try Demo
+            </a>
           </Button>
           <Button variant="ghost" size="icon" className="md:hidden text-white">
             <Menu className="h-5 w-5" />
