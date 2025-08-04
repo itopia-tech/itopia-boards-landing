@@ -21,7 +21,7 @@ const Benefit = ({ text, checked }: BenefitProps) => {
           <X className="size-3" />
         </span>
       )}
-      <span className="text-foreground font-medium">{text}</span>
+      <span className="text-white font-medium">{text}</span>
     </div>
   );
 };
@@ -68,9 +68,9 @@ const PricingCard = ({
           <span className="mb-4 inline-block text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
             {price}
           </span>
-          <span className="text-center text-muted-foreground font-medium">
-            {bestFor}
-          </span>
+      <span className="text-center text-white font-medium">
+        {bestFor}
+      </span>
         </div>
         <div className="space-y-5 py-8">
           {benefits.map((benefit, index) => (
