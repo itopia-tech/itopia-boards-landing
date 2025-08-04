@@ -95,7 +95,7 @@ const PricingCard = ({
 
 const Pricing = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-hero text-white min-h-screen py-20">
+    <section id="pricing" className="relative overflow-hidden bg-gradient-hero text-white min-h-screen py-20">
       <div className="absolute inset-0 bg-gradient-to-br from-background/10 to-transparent"></div>
       <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-8">
         <div className="mb-16 space-y-6 text-center">
