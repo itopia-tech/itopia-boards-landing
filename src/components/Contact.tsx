@@ -10,6 +10,7 @@ import { z } from "zod";
 import { Mail, MessageSquare, Phone, MapPin, Loader2 } from "lucide-react";
 import { sendContactEmail, type ContactFormData } from "@/services/emailService";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const contactSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
@@ -22,6 +23,7 @@ type ContactFormInputs = z.infer<typeof contactSchema>;
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const {
@@ -48,7 +50,7 @@ const Contact = () => {
       await sendContactEmail(formData);
       
       toast({
-        title: "¡Mensaje enviado!",
+        title: t('contact.success'),
         description: "Gracias por contactarnos. Te responderemos pronto.",
       });
       
@@ -56,7 +58,7 @@ const Contact = () => {
     } catch (error) {
       console.error('Error sending email:', error);
       toast({
-        title: "Error al enviar",
+        title: t('contact.error'),
         description: "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
         variant: "destructive",
       });
@@ -70,11 +72,11 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Get in
-            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text"> Touch</span>
+            {t('contact.title').split(' ').slice(0, -1).join(' ')}
+            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text"> {t('contact.title').split(' ').slice(-1)}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions or need help getting started? Our team is here to support you every step of the way.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -85,7 +87,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="name" className="text-card-foreground">Nombre *</Label>
+                  <Label htmlFor="name" className="text-card-foreground">{t('contact.name')} *</Label>
                   <Input 
                     id="name"
                     {...register("name")}
@@ -98,7 +100,7 @@ const Contact = () => {
                   )}
                 </div>
                 <div>
-                  <Label htmlFor="email" className="text-card-foreground">Email *</Label>
+                  <Label htmlFor="email" className="text-card-foreground">{t('contact.email')} *</Label>
                   <Input 
                     id="email"
                     type="email"
@@ -114,7 +116,7 @@ const Contact = () => {
               </div>
               
               <div>
-                <Label htmlFor="subject" className="text-card-foreground">Asunto *</Label>
+                <Label htmlFor="subject" className="text-card-foreground">{t('contact.subject')} *</Label>
                 <Input 
                   id="subject"
                   {...register("subject")}
@@ -128,7 +130,7 @@ const Contact = () => {
               </div>
               
               <div>
-                <Label htmlFor="message" className="text-card-foreground">Mensaje *</Label>
+                <Label htmlFor="message" className="text-card-foreground">{t('contact.message')} *</Label>
                 <Textarea 
                   id="message"
                   {...register("message")}
@@ -152,12 +154,12 @@ const Contact = () => {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Enviando...
+                    {t('contact.sending')}
                   </>
                 ) : (
                   <>
                     <MessageSquare className="mr-2 h-5 w-5" />
-                    Enviar Mensaje
+                    {t('contact.send')}
                   </>
                 )}
               </Button>

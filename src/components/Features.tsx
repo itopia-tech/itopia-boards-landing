@@ -1,37 +1,40 @@
 import { Card } from "@/components/ui/card";
 import { Layers, Users, Zap, Shield, Calendar, BarChart3 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Features = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: Layers,
-      title: "Multi-Board Management",
-      description: "Create unlimited boards for different projects, teams, or workflows. Each board is a separate workspace tailored to your needs."
+      title: t('features.multiBoard'),
+      description: t('features.multiBoardDesc')
     },
     {
       icon: Users,
-      title: "Team Collaboration",
-      description: "Invite team members, assign tasks, and collaborate in real-time. Comments, mentions, and notifications keep everyone aligned."
+      title: t('features.teamCollab'),
+      description: t('features.teamCollabDesc')
     },
     {
       icon: Zap,
-      title: "Automation & Templates",
-      description: "Automate repetitive tasks and start projects faster with pre-built templates for common workflows."
+      title: t('features.automation'),
+      description: t('features.automationDesc')
     },
     {
       icon: Shield,
-      title: "Enterprise Security",
-      description: "High security level with encryption, and granular permission controls to keep your data safe."
+      title: t('features.security'),
+      description: t('features.securityDesc')
     },
     {
       icon: Calendar,
-      title: "Timeline & Deadlines",
-      description: "Set due dates, create milestones, and visualize project timelines. Never miss important deadlines again."
+      title: t('features.timeline'),
+      description: t('features.timelineDesc')
     },
     {
       icon: BarChart3,
-      title: "Analytics & Insights",
-      description: "Track team productivity, identify bottlenecks, and make data-driven decisions with comprehensive analytics."
+      title: t('features.analytics'),
+      description: t('features.analyticsDesc')
     }
   ];
 
@@ -40,12 +43,11 @@ const Features = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Powerful Features for
-            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text"> Every Team</span>
+            {t('features.title').split(' ').slice(0, -2).join(' ')}
+            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text"> {t('features.title').split(' ').slice(-2).join(' ')}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            ITopIA Boards combines simplicity with powerful features to help teams of all sizes 
-            stay organized and productive.
+            {t('features.subtitle')}
           </p>
         </div>
 
