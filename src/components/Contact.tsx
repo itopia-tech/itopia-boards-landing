@@ -3,9 +3,68 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, Phone, MapPin } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Mail, MessageSquare, Phone, MapPin, Loader2 } from "lucide-react";
+import { sendContactEmail, type ContactFormData } from "@/services/emailService";
+import { useState } from "react";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  email: z.string().email("Por favor ingresa un email válido"),
+  subject: z.string().min(3, "El asunto debe tener al menos 3 caracteres"),
+  message: z.string().min(10, "El mensaje debe tener al menos 10 caracteres"),
+});
+
+type ContactFormInputs = z.infer<typeof contactSchema>;
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormInputs>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormInputs) => {
+    setIsSubmitting(true);
+    
+    try {
+      const formData: ContactFormData = {
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+        product: "ITopIA Boards",
+      };
+
+      await sendContactEmail(formData);
+      
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Gracias por contactarnos. Te responderemos pronto.",
+      });
+      
+      reset();
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error al enviar",
+        description: "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
@@ -23,49 +82,84 @@ const Contact = () => {
           {/* Contact Form */}
           <Card className="p-8 border-border bg-card/50 backdrop-blur-sm">
             <h3 className="text-2xl font-semibold mb-6 text-card-foreground">Send us a message</h3>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="name" className="text-card-foreground">Name</Label>
+                  <Label htmlFor="name" className="text-card-foreground">Nombre *</Label>
                   <Input 
-                    id="name" 
-                    placeholder="Your name" 
+                    id="name"
+                    {...register("name")}
+                    placeholder="Tu nombre" 
                     className="mt-2 border-border focus:border-primary"
+                    disabled={isSubmitting}
                   />
+                  {errors.name && (
+                    <p className="text-destructive text-sm mt-1">{errors.name.message}</p>
+                  )}
                 </div>
                 <div>
-                  <Label htmlFor="email" className="text-card-foreground">Email</Label>
+                  <Label htmlFor="email" className="text-card-foreground">Email *</Label>
                   <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="your@email.com" 
+                    id="email"
+                    type="email"
+                    {...register("email")}
+                    placeholder="tu@email.com" 
                     className="mt-2 border-border focus:border-primary"
+                    disabled={isSubmitting}
                   />
+                  {errors.email && (
+                    <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
+                  )}
                 </div>
               </div>
               
               <div>
-                <Label htmlFor="subject" className="text-card-foreground">Subject</Label>
+                <Label htmlFor="subject" className="text-card-foreground">Asunto *</Label>
                 <Input 
-                  id="subject" 
-                  placeholder="What can we help you with?" 
+                  id="subject"
+                  {...register("subject")}
+                  placeholder="¿En qué podemos ayudarte?" 
                   className="mt-2 border-border focus:border-primary"
+                  disabled={isSubmitting}
                 />
+                {errors.subject && (
+                  <p className="text-destructive text-sm mt-1">{errors.subject.message}</p>
+                )}
               </div>
               
               <div>
-                <Label htmlFor="message" className="text-card-foreground">Message</Label>
+                <Label htmlFor="message" className="text-card-foreground">Mensaje *</Label>
                 <Textarea 
-                  id="message" 
-                  placeholder="Tell us about your project or question..." 
+                  id="message"
+                  {...register("message")}
+                  placeholder="Cuéntanos sobre tu proyecto o pregunta..." 
                   rows={5}
                   className="mt-2 border-border focus:border-primary resize-none"
+                  disabled={isSubmitting}
                 />
+                {errors.message && (
+                  <p className="text-destructive text-sm mt-1">{errors.message.message}</p>
+                )}
               </div>
               
-              <Button variant="default" size="lg" className="w-full">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Send Message
+              <Button 
+                type="submit" 
+                variant="default" 
+                size="lg" 
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    Enviar Mensaje
+                  </>
+                )}
               </Button>
             </form>
           </Card>
