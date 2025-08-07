@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 // Configuración de EmailJS de ITopIA
 const EMAILJS_CONFIG = {
   serviceId: 'service_a2tz65m',
-  templateId: 'template_s3xxu4j',
+  templateId: 'template_i1vfs8q',
   publicKey: 'eEci_wuWIg8UAUeiD'
 };
 
