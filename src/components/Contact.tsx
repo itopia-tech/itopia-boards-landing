@@ -12,19 +12,20 @@ import { sendContactEmail, type ContactFormData } from "@/services/emailService"
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const contactSchema = z.object({
-  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
-  email: z.string().email("Por favor ingresa un email válido"),
-  subject: z.string().min(3, "El asunto debe tener al menos 3 caracteres"),
-  message: z.string().min(10, "El mensaje debe tener al menos 10 caracteres"),
+const createContactSchema = (t: (key: string) => string) => z.object({
+  name: z.string().min(2, t('contact.nameRequired')),
+  email: z.string().email(t('contact.emailInvalid')),
+  subject: z.string().min(3, t('contact.subjectRequired')),
+  message: z.string().min(10, t('contact.messageRequired')),
 });
-
-type ContactFormInputs = z.infer<typeof contactSchema>;
 
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const contactSchema = createContactSchema(t);
+  type ContactFormInputs = z.infer<typeof contactSchema>;
   
   const {
     register,
@@ -51,7 +52,7 @@ const Contact = () => {
       
       toast({
         title: t('contact.success'),
-        description: "Gracias por contactarnos. Te responderemos pronto.",
+        description: t('contact.successDescription'),
       });
       
       reset();
@@ -59,7 +60,7 @@ const Contact = () => {
       console.error('Error sending email:', error);
       toast({
         title: t('contact.error'),
-        description: "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
+        description: t('contact.errorDescription'),
         variant: "destructive",
       });
     } finally {
@@ -83,7 +84,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <Card className="p-8 border-border bg-card/50 backdrop-blur-sm">
-            <h3 className="text-2xl font-semibold mb-6 text-card-foreground">Send us a message</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-card-foreground">{t('contact.formTitle')}</h3>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -91,7 +92,7 @@ const Contact = () => {
                   <Input 
                     id="name"
                     {...register("name")}
-                    placeholder="Tu nombre" 
+                    placeholder={t('contact.namePlaceholder')} 
                     className="mt-2 border-border focus:border-primary"
                     disabled={isSubmitting}
                   />
@@ -105,7 +106,7 @@ const Contact = () => {
                     id="email"
                     type="email"
                     {...register("email")}
-                    placeholder="tu@email.com" 
+                    placeholder={t('contact.emailPlaceholder')} 
                     className="mt-2 border-border focus:border-primary"
                     disabled={isSubmitting}
                   />
@@ -120,7 +121,7 @@ const Contact = () => {
                 <Input 
                   id="subject"
                   {...register("subject")}
-                  placeholder="¿En qué podemos ayudarte?" 
+                  placeholder={t('contact.subjectPlaceholder')} 
                   className="mt-2 border-border focus:border-primary"
                   disabled={isSubmitting}
                 />
@@ -134,7 +135,7 @@ const Contact = () => {
                 <Textarea 
                   id="message"
                   {...register("message")}
-                  placeholder="Cuéntanos sobre tu proyecto o pregunta..." 
+                  placeholder={t('contact.messagePlaceholder')} 
                   rows={5}
                   className="mt-2 border-border focus:border-primary resize-none"
                   disabled={isSubmitting}
@@ -169,9 +170,9 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold mb-6 text-foreground">Contact Information</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-foreground">{t('contact.infoTitle')}</h3>
               <p className="text-muted-foreground mb-8">
-                Reach out to us through any of these channels. We typically respond within 24 hours.
+                {t('contact.infoDescription')}
               </p>
             </div>
 
@@ -182,7 +183,7 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground">Email Support</h4>
+                    <h4 className="font-semibold text-card-foreground">{t('contact.emailSupport')}</h4>
                     <p className="text-muted-foreground">contacto.itopia@gmail.com</p>
                   </div>
                 </div>
@@ -194,7 +195,7 @@ const Contact = () => {
                     <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground">Phone Support</h4>
+                    <h4 className="font-semibold text-card-foreground">{t('contact.phoneSupport')}</h4>
                     <p className="text-muted-foreground">+5989912345600000</p>
                   </div>
                 </div>
@@ -206,7 +207,7 @@ const Contact = () => {
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground">Office Location</h4>
+                    <h4 className="font-semibold text-card-foreground">{t('contact.officeLocation')}</h4>
                     <p className="text-muted-foreground">Montevideo City<br />Mvdeo City, TC 12345</p>
                   </div>
                 </div>
