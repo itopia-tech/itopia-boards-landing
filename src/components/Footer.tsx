@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Trello, Twitter, Github, Linkedin, Facebook } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className="bg-gradient-primary text-white py-16">
       <div className="container mx-auto px-6">
@@ -13,8 +16,7 @@ const Footer = () => {
               <span className="text-2xl font-bold">ITopIA Boards</span>
             </div>
             <p className="text-white/80 leading-relaxed mb-6 max-w-md">
-              Transform your project management with intuitive boards, lists, and cards. 
-              Built for teams who demand simplicity without sacrificing power.
+              {t('footer.tagline')}
             </p>
             <div className="flex space-x-4">
               <Button variant="ghost" size="icon" className="text-white hover:text-accent">
@@ -34,22 +36,22 @@ const Footer = () => {
 
           {/* Product Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Product</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.product')}</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Features</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Templates</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">API (Coming Soon)</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.features')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.pricing')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.templates')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.api')}</a></li>
             </ul>
           </div>
 
           {/* Support Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Support</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.support')}</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">24x7 Help</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Status</a></li>
-              <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.help')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.status')}</a></li>
+              <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">{t('footer.contactUs')}</a></li>
             </ul>
           </div>
         </div>
@@ -58,12 +60,12 @@ const Footer = () => {
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-white/80 text-sm mb-4 md:mb-0">
-              © 2025 ITopIA Boards. All rights reserved.
+              © 2025 ITopIA Boards. {t('footer.allRights')}
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-white/80 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-white/80 hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="text-white/80 hover:text-white transition-colors">Cookie Policy</a>
+              <a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.privacy')}</a>
+              <a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.terms')}</a>
+              <a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.cookies')}</a>
             </div>
           </div>
         </div>

@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CallToAction = () => {
+  const { t } = useLanguage();
+  
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -29,18 +32,17 @@ const CallToAction = () => {
           </div>
           
           <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Ready to Transform
-            <span className="text-transparent bg-gradient-to-r from-accent to-primary bg-clip-text"> Your Workflow?</span>
+            {t('cta.title').split(' ').slice(0, -2).join(' ')}
+            <span className="text-transparent bg-gradient-to-r from-accent to-primary bg-clip-text"> {t('cta.title').split(' ').slice(-2).join(' ')}</span>
           </h2>
           
           <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join the teams who have revolutionized their project management. 
-            Log on with a Demo Access today and experience the difference.
+            {t('cta.subtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button variant="hero" size="lg" className="group text-lg px-8 py-4">
-              Try Demo Now
+              {t('cta.tryDemo')}
               <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
@@ -49,22 +51,22 @@ const CallToAction = () => {
               className="text-lg px-8 py-4"
               onClick={scrollToContact}
             >
-              Schedule Demo with Support
+              {t('cta.scheduleDemo')}
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
             <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10">
-              <div className="text-3xl font-bold mb-2">Full Features Access</div>
-              <div className="text-white/70">Demo Access</div>
+              <div className="text-3xl font-bold mb-2">{t('cta.fullAccess')}</div>
+              <div className="text-white/70">{t('cta.demoAccess')}</div>
             </div>
             <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10">
-              <div className="text-3xl font-bold mb-2">No Setup</div>
-              <div className="text-white/70">Immediate Web Access</div>
+              <div className="text-3xl font-bold mb-2">{t('cta.noSetup')}</div>
+              <div className="text-white/70">{t('cta.immediateAccess')}</div>
             </div>
             <div className="bg-gradient-card backdrop-blur-md rounded-xl p-6 border border-white/10">
-              <div className="text-3xl font-bold mb-2">24/7</div>
-              <div className="text-white/70">Support Available</div>
+              <div className="text-3xl font-bold mb-2">{t('cta.support247')}</div>
+              <div className="text-white/70">{t('cta.supportAvailable')}</div>
             </div>
           </div>
         </div>
