@@ -3,6 +3,7 @@ import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface BenefitProps {
   text: string;
@@ -94,6 +95,8 @@ const PricingCard = ({
 };
 
 const Pricing = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="pricing" className="relative overflow-hidden bg-gradient-hero text-white min-h-screen py-20">
       <div className="absolute inset-0 bg-gradient-to-br from-background/10 to-transparent"></div>
@@ -105,7 +108,7 @@ const Pricing = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl bg-gradient-primary bg-clip-text text-transparent"
           >
-            Simple, Transparent Pricing
+            {t('pricing.title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -113,54 +116,54 @@ const Pricing = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-lg text-white/80 md:text-xl max-w-2xl mx-auto"
           >
-            Choose the perfect plan for your team. Start free and scale as you grow.
+            {t('pricing.subtitle')}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <PricingCard
-            tier="Free"
+            tier={t('pricing.free')}
             price="$0/mo"
-            bestFor="Perfect for individuals"
-            CTA="Get Started Free"
+            bestFor={t('pricing.freeDesc')}
+            CTA={t('pricing.getStarted')}
             benefits={[
-              { text: "Up to 3 boards", checked: true },
-              { text: "Unlimited personal lists", checked: true },
-              { text: "Basic templates", checked: true },
-              { text: "Email support", checked: true },
-              { text: "Team collaboration", checked: false },
-              { text: "Advanced integrations", checked: false },
+              { text: t('pricing.boards3'), checked: true },
+              { text: t('pricing.listsUnlimited'), checked: true },
+              { text: t('pricing.templatesBasic'), checked: true },
+              { text: t('pricing.emailSupport'), checked: true },
+              { text: t('pricing.teamCollab'), checked: false },
+              { text: t('pricing.integrations'), checked: false },
             ]}
           />
           
           <PricingCard
-            tier="Pro"
+            tier={t('pricing.pro')}
             price="$12/mo"
-            bestFor="Best for small teams"
-            CTA="Start Free Trial"
+            bestFor={t('pricing.proDesc')}
+            CTA={t('pricing.startTrial')}
             featured={true}
             benefits={[
-              { text: "Unlimited boards", checked: true },
-              { text: "Team collaboration", checked: true },
-              { text: "Advanced templates", checked: true },
-              { text: "Priority support", checked: true },
-              { text: "Custom workflows", checked: true },
-              { text: "Analytics dashboard", checked: false },
+              { text: t('pricing.boardsUnlimited'), checked: true },
+              { text: t('pricing.teamCollab'), checked: true },
+              { text: t('pricing.templatesAdvanced'), checked: true },
+              { text: t('pricing.prioritySupport'), checked: true },
+              { text: t('pricing.workflows'), checked: true },
+              { text: t('pricing.analytics'), checked: false },
             ]}
           />
           
           <PricingCard
-            tier="Enterprise"
+            tier={t('pricing.enterprise')}
             price="Custom"
-            bestFor="For large organizations"
-            CTA="Contact Sales"
+            bestFor={t('pricing.enterpriseDesc')}
+            CTA={t('pricing.contactSales')}
             benefits={[
-              { text: "Everything in Pro", checked: true },
-              { text: "Advanced integrations", checked: true },
-              { text: "Analytics dashboard", checked: true },
-              { text: "Custom branding", checked: true },
-              { text: "SSO & security", checked: true },
-              { text: "Dedicated support", checked: true },
+              { text: t('pricing.everythingPro'), checked: true },
+              { text: t('pricing.integrations'), checked: true },
+              { text: t('pricing.analytics'), checked: true },
+              { text: t('pricing.branding'), checked: true },
+              { text: t('pricing.sso'), checked: true },
+              { text: t('pricing.dedicatedSupport'), checked: true },
             ]}
           />
         </div>
@@ -172,7 +175,7 @@ const Pricing = () => {
           className="mt-16 text-center"
         >
           <p className="text-white/60 text-sm">
-            All plans include a 14-day free trial. No credit card required.
+            {t('pricing.disclaimer')}
           </p>
         </motion.div>
       </div>
